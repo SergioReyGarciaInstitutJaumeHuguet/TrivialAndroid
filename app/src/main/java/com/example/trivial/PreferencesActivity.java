@@ -55,17 +55,11 @@ public class PreferencesActivity extends AppCompatActivity {
         seekBarQuestions.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                // Asegurar que el mínimo sea 2
-                int questionCount = Math.max(2, progress);
+                int questionCount = Math.max(5, Math.min(progress, 20)); // Ahora el mínimo es 5 y el máximo es 20
 
-                // Si el progreso es menor que 2, forzar a 2
-                if (progress < 2) {
-                    seekBar.setProgress(2);
-                }
-
+                seekBar.setProgress(questionCount); // Asegurar que nunca sea menor a 5 ni mayor a 20
                 txtQuestionCount.setText("Preguntas actuales: " + questionCount);
 
-                // Guardar número de preguntas
                 editor.putInt("question_count", questionCount);
                 editor.apply();
             }
