@@ -37,8 +37,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Trivial es una aplicación educativa de preguntas y respuestas diseñada para poner a prueba tus conocimientos de manera divertida y interactiva."
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="16dp"
+            android:text="Trivial es una aplicación educativa de preguntas y respuestas diseñada para poner a prueba tus conocimientos sobre cataluña de manera divertida y interactiva." />
 
         <TextView
             android:layout_width="match_parent"
@@ -51,8 +51,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="• Estudiantes\n• Amantes del conocimiento\n• Personas que disfrutan de juegos educativos"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="16dp"
+            android:text="• Estudiantes\n• Amantes del conocimiento\n• Personas que disfrutan de juegos educativos catalanes" />
 
         <TextView
             android:layout_width="match_parent"
@@ -64,9 +64,9 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="• Preguntas variadas\n• Sistema de puntuación\n• Interfaz intuitiva\n• Modo de juego flexible"
-            android:layout_marginBottom="16dp"/>
+            android:layout_height="148dp"
+            android:layout_marginBottom="16dp"
+            android:text="• Preguntas variadas\n• Sistema de puntuación\n• Interfaz intuitiva\n• Modo de juego flexible\n• Respuestas concisas (Si pulsas, se responde instantaneamente)" />
 
         <TextView
             android:layout_width="match_parent"
