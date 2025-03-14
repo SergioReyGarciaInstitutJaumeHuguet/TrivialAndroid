@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TRIVIAL"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="50dp"/>
+
+    <Button
+        android:id="@+id/btnStartGame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Iniciar Juego"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnAppInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Información de la App"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnPreferences"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Preferencias"
+        android:layout_marginBottom="16dp"/>
+
+</LinearLayout>

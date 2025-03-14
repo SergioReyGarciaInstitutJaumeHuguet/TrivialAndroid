@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Preferencias"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Número de Preguntas por Ronda"
+        android:textStyle="bold"/>
+
+    <SeekBar
+        android:id="@+id/seekBarQuestions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="10"
+        android:progress="5"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/txtQuestionCount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Preguntas actuales: 5"
+        android:textAlignment="center"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Puntuación Máxima"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/txtMaxScore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Puntuación máxima actual: 0"
+        android:textAlignment="center"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnResetMaxScore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reiniciar Puntuación Máxima"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnResetPreferences"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Restaurar Valores Predeterminados"/>
+
+</LinearLayout>

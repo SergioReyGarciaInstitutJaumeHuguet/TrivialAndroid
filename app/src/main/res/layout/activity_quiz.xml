@@ -1,0 +1,98 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Trivial - Preguntas"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Contador de Puntuación -->
+    <TextView
+        android:id="@+id/txtScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Puntuación: 0"
+        android:textSize="18sp"
+        android:layout_gravity="end"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Contenedor de Pregunta -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:elevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/txtPregunta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="¿Aquí aparecerá la pregunta?"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:minHeight="100dp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Botones de Respuesta -->
+    <Button
+        android:id="@+id/btnRespuesta1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Respuesta 1"
+        android:padding="12dp"
+        android:layout_marginBottom="12dp"/>
+
+    <Button
+        android:id="@+id/btnRespuesta2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Respuesta 2"
+        android:padding="12dp"
+        android:layout_marginBottom="12dp"/>
+
+    <Button
+        android:id="@+id/btnRespuesta3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Respuesta 3"
+        android:padding="12dp"
+        android:layout_marginBottom="12dp"/>
+
+    <Button
+        android:id="@+id/btnRespuesta4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Respuesta 4"
+        android:padding="12dp"
+        android:layout_marginBottom="24dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <!-- Botón para siguiente pregunta -->
+        <Button
+            android:id="@+id/btnSiguientePregunta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Siguiente Pregunta"
+            android:enabled="false"/>
+    </LinearLayout>
+</LinearLayout>
