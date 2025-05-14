@@ -2,6 +2,7 @@ package com.example.trivial;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -55,6 +56,16 @@ public class QuizActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 
+    // Para música y sonidos
+    private MediaPlayer backgroundMusic;
+    private MediaPlayer correctSound;
+    private MediaPlayer incorrectSound;
+    private MediaPlayer buttonClickSound;
+
+    // Preferencias de sonido
+    private boolean backgroundMusicEnabled;
+    private boolean soundEffectsEnabled;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +89,13 @@ public class QuizActivity extends AppCompatActivity {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPreferences.edit();
 
+        // Obtener preferencias de sonido
+        backgroundMusicEnabled = sharedPreferences.getBoolean("background_music_enabled", true);
+        soundEffectsEnabled = sharedPreferences.getBoolean("sound_effects_enabled", true);
+
+        // Inicializar MediaPlayers para sonidos
+        initSounds();
+
         // Cargar preguntas automáticamente
         cargarPreguntas();
 
@@ -85,9 +103,14 @@ public class QuizActivity extends AppCompatActivity {
         btnSiguientePregunta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (soundEffectsEnabled) {
+                    buttonClickSound.seekTo(0);
+                    buttonClickSound.start();
+                }
+
                 if (!preguntasPendientes.isEmpty()) {
                     mostrarSiguientePregunta();
-                }  else {
+                } else {
                     Toast.makeText(QuizActivity.this, "No hay preguntas disponibles", Toast.LENGTH_SHORT).show();
                     mostrarSiguientePregunta();
                 }
@@ -96,6 +119,77 @@ public class QuizActivity extends AppCompatActivity {
 
         // Configurar botones de respuesta
         configurarBotonesRespuesta();
+    }
+
+    private void initSounds() {
+        // Inicializar sonidos
+        backgroundMusic = MediaPlayer.create(this, R.raw.quiz_background);
+        backgroundMusic.setLooping(true);
+
+        correctSound = MediaPlayer.create(this, R.raw.correct_answer);
+        incorrectSound = MediaPlayer.create(this, R.raw.incorrect_answer);
+        buttonClickSound = MediaPlayer.create(this, R.raw.button_click);
+
+        // Iniciar música de fondo si está habilitada
+        if (backgroundMusicEnabled) {
+            backgroundMusic.start();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Actualizar preferencias
+        backgroundMusicEnabled = sharedPreferences.getBoolean("background_music_enabled", true);
+        soundEffectsEnabled = sharedPreferences.getBoolean("sound_effects_enabled", true);
+
+        // Control de música de fondo
+        if (backgroundMusicEnabled && backgroundMusic != null && !backgroundMusic.isPlaying()) {
+            backgroundMusic.start();
+        } else if (!backgroundMusicEnabled && backgroundMusic != null && backgroundMusic.isPlaying()) {
+            backgroundMusic.pause();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // Pausar música si está activada
+        if (backgroundMusic != null && backgroundMusic.isPlaying()) {
+            backgroundMusic.pause();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        // Liberar recursos de MediaPlayer
+        releaseMediaPlayers();
+    }
+
+    private void releaseMediaPlayers() {
+        if (backgroundMusic != null) {
+            backgroundMusic.release();
+            backgroundMusic = null;
+        }
+
+        if (correctSound != null) {
+            correctSound.release();
+            correctSound = null;
+        }
+
+        if (incorrectSound != null) {
+            incorrectSound.release();
+            incorrectSound = null;
+        }
+
+        if (buttonClickSound != null) {
+            buttonClickSound.release();
+            buttonClickSound = null;
+        }
     }
 
     private void configurarBotonesRespuesta() {
@@ -116,6 +210,12 @@ public class QuizActivity extends AppCompatActivity {
                     score++;
                     txtScore.setText("Puntuación: " + score);
 
+                    // Reproducir sonido de respuesta correcta
+                    if (soundEffectsEnabled && correctSound != null) {
+                        correctSound.seekTo(0);
+                        correctSound.start();
+                    }
+
                     // Cambiar color de fondo a verde
                     runOnUiThread(() -> btnSeleccionado.setBackgroundTintList(ContextCompat.getColorStateList(QuizActivity.this, R.color.colorCorrect)));
 
@@ -130,6 +230,12 @@ public class QuizActivity extends AppCompatActivity {
                     }
                 } else {
                     // Respuesta incorrecta
+                    // Reproducir sonido de respuesta incorrecta
+                    if (soundEffectsEnabled && incorrectSound != null) {
+                        incorrectSound.seekTo(0);
+                        incorrectSound.start();
+                    }
+
                     // Cambiar color de fondo a rojo
                     runOnUiThread(() -> btnSeleccionado.setBackgroundTintList(ContextCompat.getColorStateList(QuizActivity.this, R.color.colorIncorrect)));
 
@@ -253,6 +359,11 @@ public class QuizActivity extends AppCompatActivity {
         resetearBotonesRespuesta();
 
         if (preguntasPendientes.isEmpty()) {
+            // Detenemos la música antes de ir a la siguiente actividad
+            if (backgroundMusic != null && backgroundMusic.isPlaying()) {
+                backgroundMusic.pause();
+            }
+
             // Mostrar la pantalla de resultados finales
             Intent intent = new Intent(QuizActivity.this, FinalActivity.class);
             intent.putExtra("score", score);

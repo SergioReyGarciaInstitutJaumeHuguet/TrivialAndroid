@@ -6,6 +6,28 @@
     android:gravity="center"
     android:padding="16dp">
 
+    <!-- Mensaje de resultado (Victoria o Derrota) -->
+    <TextView
+        android:id="@+id/txtResultMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="#6854a4"
+        android:text="RESULTADO"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Imagen de resultado (Victoria o Derrota) -->
+    <ImageView
+        android:id="@+id/imgResult"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp"
+        android:contentDescription="Imagen de resultado" />
+
+    <!-- Puntuación final -->
     <TextView
         android:id="@+id/txtFinalScore"
         android:layout_width="match_parent"
@@ -14,8 +36,9 @@
         android:textStyle="bold"
         android:gravity="center"
         android:text="Has terminado con X/Y puntos"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginBottom="36dp"/>
 
+    <!-- Botón para volver al menú principal -->
     <Button
         android:id="@+id/btnVolverMenu"
         android:layout_width="wrap_content"
